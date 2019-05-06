@@ -1,13 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var userLsts= require('../public/data/users')
 
 /* GET userlist. */
 router.get('/userlist', function(req, res) {
-  var db = req.db;
-  var collection = db.get('userlist');
-  collection.find({},{},function(e,docs){
-    res.json(docs);
-  });
+    res.json(userLsts.user);
 });
 
 /* POST to adduser. */

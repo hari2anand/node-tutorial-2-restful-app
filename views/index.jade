@@ -2,27 +2,21 @@ extends layout
 
 block content
   h1= title
-  p Welcome to our test
+  p Welcome to One Web Checkout BackEnd Tester
 
   // Wrapper
   #wrapper
 
-    // USER INFO
-    #userInfo
-      h2 User Info
+    // Checkout INFO
+    #checkoutInfo
+      h2 Checkout Info
       p
-        strong Name:
-        |  <span id='userInfoName'></span>
+        strong ID:
+        |  <span id='checkoutID'></span>
         br
-        strong Age:
-        |  <span id='userInfoAge'></span>
-        br
-        strong Gender:
-        |  <span id='userInfoGender'></span>
-        br
-        strong Location:
-        |  <span id='userInfoLocation'></span>
-    // /USER INFO
+        strong State:
+        |  <span id='CheckoutState'></span>
+    // /Checkout INFO
 
     // USER LIST
     h2 User List
@@ -31,24 +25,27 @@ block content
         thead
           th UserName
           th Email
-          th Delete?
+          th Select?
         tbody
     // /USER LIST
 
-    // ADD USER
-    h2 Add User
-    #addUser
+    // Create Checkout
+    h2 Create Checkout
+    #createCheckout
       fieldset
         input#inputUserName(type='text', placeholder='Username')
-        input#inputUserEmail(type='text', placeholder='Email')
+        input#inputUserPassword(type='password', placeholder='UserPassword')
         br
-        input#inputUserFullname(type='text', placeholder='Full Name')
-        input#inputUserAge(type='text', placeholder='Age')
+        input#inputshoppingType(type='text', placeholder='shoppingType')
+        input#inputchannel(type='text', placeholder='channel')
+        input#inputcheckoutType(type='text', placeholder='checkoutType')
         br
-        input#inputUserLocation(type='text', placeholder='Location')
-        input#inputUserGender(type='text', placeholder='gender')
+        input#inputcartId(type='text', placeholder='cartId')
         br
-        button#btnAddUser Add User
-    // /ADD USER
+        input#inputzipCode(type='text', placeholder='zipCode(optional)')
+        input#inputfamilyCard(type='text', placeholder='familyCard(optional)')
+        br
+        button#btncreateCheckout Create Checkout
+    // /Create Checkout
 
   // /WRAPPER
