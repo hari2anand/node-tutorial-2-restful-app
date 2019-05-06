@@ -90,6 +90,17 @@ function selectUser(event) {
   // Check and make sure the user confirmed
   if (confirmation === true) {
     $('#createCheckout fieldset input#inputUserName').val(thisUserObject.userName)
+    $('#createCheckout fieldset input#inputUserPassword').val(thisUserObject.userPwd)
+    $('#createCheckout fieldset input#inputshoppingType').val(thisUserObject.shoppingType)
+    $('#createCheckout fieldset input#inputchannel').val(thisUserObject.channel)
+    $('#createCheckout fieldset input#inputcheckoutType').val(thisUserObject.checkoutType)
+    $('#createCheckout fieldset input#inputcartId').val(thisUserObject.cartId)
+    $('#createCheckout fieldset input#inputzipCode').val(thisUserObject.zipCode)
+    if (typeof (thisUserObject.familyCardNumber)!="undefined")
+    {$('#createCheckout fieldset input#inputfamilyCard').val(thisUserObject.familyCardNumber)}
+    else{
+      $('#createCheckout fieldset input#inputfamilyCard').val(null)
+    }
   }
   else {
     return false;
