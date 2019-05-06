@@ -37,7 +37,7 @@ function populateTable() {
       tableContent += '<tr>';
       tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.userName + '" title="Show Details">' + this.userName + '</a></td>';
       tableContent += '<td>' + this.email + '</td>';
-      tableContent += '<td><a href="#" class="linkselectuser" rel="' + this._id + '">select</a></td>';
+      tableContent += '<td><a href="#" class="linkselectuser" rel="' + this.userName + '">select</a></td>';
       tableContent += '</tr>';
     });
 
@@ -61,16 +61,40 @@ function showUserInfo(event) {
 
   // Get our User Object
   var thisUserObject = userListData[arrayPosition];
-  var userName=JSON.stringify(thisUserObject)
-  popupS.window({
+  var userName=JSON.stringify(thisUserObject).replace("{","").replace("}","").replace(/,/g, '\r\n')
+  popupS.alert({
     title: 'User Detail',
     content: userName
     });
+
   //Populate Info Box
   $('#userInfoName').text(userName);
   $('#userInfoAge').text(thisUserObject.email);
-  $('#userInfoGender').text(thisUserObject.userPwd);
-  $('#userInfoLocation').text(thisUserObject.zipCode);
+};
+
+function selectUser(event) {
+
+  event.preventDefault();
+
+  var thisUserName = $(this).attr('rel');
+
+  // Get Index of object based on id value
+  var arrayPosition = userListData.map(function(arrayItem) { return arrayItem.userName; }).indexOf(thisUserName);
+
+  // Get our User Object
+  var thisUserObject = userListData[arrayPosition];
+
+  // Pop up a confirmation dialog
+  var confirmation = confirm('Are you sure you want to Select this user?');
+
+  // Check and make sure the user confirmed
+  if (confirmation === true) {
+    $('#createCheckout fieldset input#inputUserName').val(thisUserObject.userName)
+  }
+  else {
+    return false;
+
+  }
 
 };
 
@@ -128,23 +152,4 @@ function addUser(event) {
     alert('Please fill in all fields');
     return false;
   }
-};
-
-// Delete User
-function selectUser(event) {
-
-  event.preventDefault();
-
-  // Pop up a confirmation dialog
-  var confirmation = confirm('Are you sure you want to Select this user?');
-
-  // Check and make sure the user confirmed
-  if (confirmation === true) {
-    $('#createCheckout fieldset input#inputUserName').val() = "TestUser1"
-  }
-  else {
-    return false;
-
-  }
-
 };
